@@ -25,6 +25,10 @@ public:
         return front == nullptr;
     }
 
+    bool checkEmpty() {
+        return front == nullptr;
+    }
+
     void enqueue(int new_data) {
         Node* new_node = new Node(new_data);
         if (rear == nullptr) {
@@ -65,6 +69,16 @@ public:
             return -1; // Using -1 to indicate queue is empty
         }
     }
+
+    int size() {
+        int count = 0;
+        Node* current = front;
+        while (current != nullptr) {
+            count++;
+            current = current->next;
+        }
+        return count;
+    }
 };
 
 void displayMenu() {
@@ -73,7 +87,9 @@ void displayMenu() {
     cout << "2. Dequeue\n";
     cout << "3. Peek Front\n";
     cout << "4. Peek Rear\n";
-    cout << "5. Exit\n";
+    cout << "5. Check if Empty\n";
+    cout << "6. Get Size\n";
+    cout << "7. Exit\n";
     cout << "Enter your choice: ";
 }
 
@@ -101,6 +117,15 @@ int main() {
                 cout << "Rear element is " << q.peekRear() << endl;
                 break;
             case 5:
+                if (q.checkEmpty())
+                    cout << "Queue is empty" << endl;
+                else
+                    cout << "Queue is not empty" << endl;
+                break;
+            case 6:
+                cout << "Queue size is " << q.size() << endl;
+                break;
+            case 7:
                 cout << "Exiting..." << endl;
                 return 0;
             default:
